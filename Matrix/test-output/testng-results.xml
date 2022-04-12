@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="1" failed="0" total="1" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="36" started-at="2016-10-17T19:09:49Z" finished-at="2016-10-17T19:09:49Z">
+    <groups>
+      <group name="suiteC">
+        <method signature="org.jlayer.app.MatrixTest.test2()" name="test2" class="org.jlayer.app.MatrixTest"/>
+      </group>
+    </groups>
+    <test name="Default test" duration-ms="36" started-at="2016-10-17T19:09:49Z" finished-at="2016-10-17T19:09:49Z">
+      <class name="org.jlayer.app.MatrixTest">
+        <test-method status="FAIL" signature="beforeClass()" name="beforeClass" is-config="true" duration-ms="0" started-at="2016-10-17T19:09:49Z" finished-at="2016-10-17T19:09:49Z">
+          <exception class="java.lang.AbstractMethodError">
+            <full-stacktrace>
+              <![CDATA[java.lang.AbstractMethodError
+	at org.testng.internal.Invoker.runConfigurationListeners(Invoker.java:1805)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:204)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:132)
+	at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:173)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:105)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1182)
+	at org.testng.TestRunner.privateRun(TestRunner.java:761)
+	at org.testng.TestRunner.run(TestRunner.java:612)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:335)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:330)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:292)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:241)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1169)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1094)
+	at org.testng.TestNG.run(TestNG.java:1006)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+]]>
+            </full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method status="SKIP" signature="test2()" name="test2" duration-ms="8" started-at="2016-10-17T19:09:49Z" finished-at="2016-10-17T19:09:49Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>
