@@ -1,3 +1,6 @@
+# ignore some directories
+reports/
+
 # ignore generated java file, class files and html files
 *Layer_*_.java
 *.class
@@ -28,4 +31,3 @@ hs_err_pid*
 # do not ignore these files
 !jlayer-1.0.jar
 !testng.jar
-/reports/

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite hostname="Remise-2020" failures="0" tests="1" name="org.jlayer.app.LifeTest" time="0.047" errors="0" timestamp="12 Apr 2022 17:09:49 GMT">
+<testsuite hostname="Remise-2020" failures="0" tests="1" name="org.jlayer.app.LifeTest" time="0.045" errors="0" timestamp="12 Apr 2022 17:27:39 GMT">
   <testcase classname="org.jlayer.app.LifeTest" name="test" time="0.003"/>
 </testsuite>
