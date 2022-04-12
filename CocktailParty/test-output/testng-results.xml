@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="94005" started-at="2016-05-13T16:28:51Z" finished-at="2016-05-13T16:30:25Z">
+    <groups>
+      <group name="PartyTest-E">
+        <method signature="PartyTest.test1_ME_A_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_ME_A_B" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- PartyTest-E -->
+      <group name="PartyTest-B">
+        <method signature="PartyTest.testInitNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testInitNetwork" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- PartyTest-B -->
+      <group name="PartyTest-A">
+        <method signature="PartyTest.testCreateNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testCreateNetwork" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- PartyTest-A -->
+      <group name="PartyTest-D">
+        <method signature="PartyTest.test2_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test2_A_Me_B" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- PartyTest-D -->
+      <group name="PartyTest-C">
+        <method signature="PartyTest.test1_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_A_Me_B" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- PartyTest-C -->
+      <group name="suiteC">
+        <method signature="PartyTest.testCreateNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testCreateNetwork" class="org.jlayer.app.PartyTest"/>
+        <method signature="PartyTest.testInitNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testInitNetwork" class="org.jlayer.app.PartyTest"/>
+        <method signature="PartyTest.test1_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_A_Me_B" class="org.jlayer.app.PartyTest"/>
+        <method signature="PartyTest.test2_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test2_A_Me_B" class="org.jlayer.app.PartyTest"/>
+        <method signature="PartyTest.test1_ME_A_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_ME_A_B" class="org.jlayer.app.PartyTest"/>
+      </group> <!-- suiteC -->
+    </groups>
+    <test name="Default test" duration-ms="94005" started-at="2016-05-13T16:28:51Z" finished-at="2016-05-13T16:30:25Z">
+      <class name="org.jlayer.app.PartyTest">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="beforeClass" is-config="true" duration-ms="8" started-at="2016-05-13T18:28:51Z" finished-at="2016-05-13T18:28:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="testCreateNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testCreateNetwork" duration-ms="190" started-at="2016-05-13T18:28:51Z" finished-at="2016-05-13T18:28:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateNetwork -->
+        <test-method status="PASS" signature="testInitNetwork()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="testInitNetwork" duration-ms="19" depends-on-groups="PartyTest-A" started-at="2016-05-13T18:28:51Z" finished-at="2016-05-13T18:28:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testInitNetwork -->
+        <test-method status="PASS" signature="test1_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_A_Me_B" duration-ms="76654" depends-on-groups="PartyTest-B" started-at="2016-05-13T18:28:51Z" finished-at="2016-05-13T18:30:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test1_A_Me_B -->
+        <test-method status="PASS" signature="test2_A_Me_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test2_A_Me_B" duration-ms="7720" depends-on-groups="PartyTest-C" started-at="2016-05-13T18:30:08Z" finished-at="2016-05-13T18:30:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test2_A_Me_B -->
+        <test-method status="PASS" signature="test1_ME_A_B()[pri:0, instance:org.jlayer.app.PartyTest@3b2d73bb]" name="test1_ME_A_B" duration-ms="9400" depends-on-groups="PartyTest-D" started-at="2016-05-13T18:30:16Z" finished-at="2016-05-13T18:30:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test1_ME_A_B -->
+      </class> <!-- org.jlayer.app.PartyTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

@@ -1,0 +1,158 @@
+<project name="CocktailParty" default="all" basedir=".">
+	
+	<!-- property definitions -->
+	
+	<property name="src.dir" value="src"/>
+	
+	<property name="src.classes.dir" value="${src.dir}/classes"/> <!-- SOURCE CLASSES -->
+	<property name="src.tests.dir" value="${src.dir}/tests"/>     <!-- TEST CLASSES -->
+	<property name="src.layers.dir" value="${src.dir}/layers"/>   <!-- GENERATED CLASSES -->
+	
+	<property name="src.resources.dir" value="${src.dir}/resources"/>   <!-- RESOURCES -->
+	
+	<property name="lib.dir" value="lib"/>
+	<property name="lib.classes.dir" value="${lib.dir}/classes"/>
+	<property name="lib.tests.dir" value="${lib.dir}/tests"/>
+	
+	<property name="build.dir" value="build"/>
+	
+	<property name="reports.dir" value="reports"/>
+	<property name="doc.dir" value="doc"/>
+	<property name="javadoc.dir" value="javadoc"/>
+	<property name="deploy.dir" value="deploy"/>
+	
+	<property name="jar.name" value="jlayer"/>
+	
+	<property name="atrium.jar.dir" value="C:\Users\gko\Downloads"/>
+	<property name="atrium.gui.dir" value="C:\Users\gko\Documents\NetBeansProjects/${ant.project.name}GUI"/>
+	
+	<property name="remise.jar.dir" value="C:\Users\Praxis\Downloads"/>
+	<property name="remise.gui.dir" value="C:\Users\Praxis\Documents\NetBeansProjects/${ant.project.name}GUI"/>
+	
+	<available file="${atrium.jar.dir}" property="atrium.present"/>
+	<available file="${remise.jar.dir}" property="remise.present"/>
+	
+	<property name="program.main" value="org.jlayer.processor.UnitVisitorTest"/>
+	<property name="debug" value="on"/>
+	
+	<!-- path definitions -->
+
+	<path id="classpath">
+		<pathelement location="${build.dir}"/>
+		<fileset dir="${lib.classes.dir}">
+    		<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="classpath.tests">
+		<path refid="classpath"/>
+		<fileset dir="${lib.tests.dir}">  
+    		<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<!-- target: clean -->
+    <target name="clean">
+    	<delete dir="${build.dir}" quiet="true"/>
+    	<delete dir="${reports.dir}" quiet="true"/>
+    	<delete dir="${javadoc.dir}" quiet="true"/>
+    	<delete dir="${deploy.dir}" quiet="true"/>
+    	<delete quiet="true">
+    		<fileset dir="." includes="**/*~" defaultexcludes="false"/>
+    	</delete>
+    </target>
+	
+	<!-- target: init -->
+    <target name="init">
+    	<mkdir dir="${build.dir}"/>
+    	<mkdir dir="${reports.dir}"/>
+    	<mkdir dir="${javadoc.dir}"/>
+    	<mkdir dir="${deploy.dir}"/>
+    </target>
+	
+	<!-- target: compile.classes -->
+    <target name="compile.classes" depends="init">
+        <javac debug="${debug}"
+    		source="17"
+    		classpathref="classpath"
+    		srcdir="${src.classes.dir}"
+         	destdir="${build.dir}"
+        	includeantruntime="false"
+		/>
+    </target>
+	
+	<!-- target: compile.tests -->
+	<target name="compile.tests" depends="compile.classes">
+		<javac debug="${debug}"
+		    source="17"
+		    classpathref="classpath.tests"
+		    srcdir="${src.tests.dir}"
+		    destdir="${build.dir}"
+		    includeantruntime="false"
+		/>
+	</target>
+	
+	<!-- target: test.classes -->
+	<target name="test.classes" depends="compile.tests">
+		<taskdef resource="testngtasks" classpathref="classpath.tests"/>
+	    <testng classpathref="classpath.tests" outputdir="${reports.dir}" 
+	    	    excludedgroups ="ignore,todo" haltonfailure="true">
+	    	<classfileset dir="${build.dir}" includes="**/*Test.class"/>
+	    </testng>
+	</target>
+	
+	<!-- target: run -->
+    <target name="run" depends="compile.classes">
+        <java classname="${program.main}" classpathref="classpath" fork="yes">
+        	<arg value="-v"/>
+        </java>
+    </target>
+	
+	<!-- target: javadoc -->
+    <target name="javadoc" depends="init">
+    	<delete dir="${javadoc.dir}" quiet="true"/>
+    	<mkdir dir="${javadoc.dir}"/>
+    	<javadoc packagenames="org.jlayer.*"
+    			sourcepath="${src.classes.dir}"
+    			defaultexcludes="yes"
+    			destdir="${javadoc.dir}"
+    			version="true"
+    			use="true"
+    			useexternalfile="yes"
+    			overview="${src.classes.dir}/overview.html"
+    		    windowtitle="JLayer-Dev"
+    			doctitle="JLayer-Dev">
+    		<link href="http://docs.oracle.com/javase/7/docs/api"/>
+    	</javadoc>
+    </target>
+	
+	<!-- target: deploy -->
+    <target name="deploy" depends="init, javadoc">
+        <jar destfile="${deploy.dir}/${ant.project.name}.jar">
+        	<zipfileset dir="${src.dir}" prefix="${src.dir}"/>
+        	<zipfileset dir="${lib.dir}" prefix="${lib.dir}"/>
+        	<zipfileset dir="${doc.dir}" prefix="${doc.dir}"/>
+        	<zipfileset dir="${javadoc.dir}" prefix="${javadoc.dir}"/>
+        	<fileset file="build.xml"/>
+        </jar>
+    </target>
+	
+	<!-- target: import.jar.atrium -->
+    <target name="import.jar.atrium" if="atrium.present">
+        <copy file="${atrium.jar.dir}/${jar.name}.jar" todir="${lib.classes.dir}"/>
+    	<echo>"${jar.name}.jar" has been imported from ${atrium.jar.dir}/</echo>
+    </target>
+	
+	<!-- target: import.jar.remise -->
+    <target name="import.jar.remise" if="remise.present">
+        <copy file="${remise.jar.dir}/${jar.name}.jar" todir="${lib.classes.dir}"/>
+    	<echo>"${jar.name}.jar" has been imported from ${remise.jar.dir}/</echo>
+    </target>
+	
+	<!-- target: import.jar -->
+    <target name="import.jar" depends="import.jar.atrium, import.jar.remise"/>
+	
+	<!-- target: all -->
+    <target name="all" depends="clean,compile.classes,test.classes,javadoc,deploy"/>
+
+</project>

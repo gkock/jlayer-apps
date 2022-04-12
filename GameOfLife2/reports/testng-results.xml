@@ -2,17 +2,17 @@
 <testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-04-12T19:27:39Z" name="Ant suite" finished-at="2022-04-12T19:27:39Z" duration-ms="45">
+  <suite started-at="2022-04-12T20:14:46Z" name="Ant suite" finished-at="2022-04-12T20:14:46Z" duration-ms="44">
     <groups>
       <group name="suiteC">
         <method signature="org.jlayer.app.LifeTest.test()" name="test" class="org.jlayer.app.LifeTest"/>
       </group>
     </groups>
-    <test started-at="2022-04-12T19:27:39Z" name="Ant test" finished-at="2022-04-12T19:27:39Z" duration-ms="45">
+    <test started-at="2022-04-12T20:14:46Z" name="Ant test" finished-at="2022-04-12T20:14:46Z" duration-ms="44">
       <class name="org.jlayer.app.LifeTest">
-        <test-method is-config="true" signature="beforeClass()" started-at="2022-04-12T19:27:39Z" name="beforeClass" finished-at="2022-04-12T19:27:39Z" duration-ms="37" status="PASS">
+        <test-method is-config="true" signature="beforeClass()" started-at="2022-04-12T20:14:46Z" name="beforeClass" finished-at="2022-04-12T20:14:46Z" duration-ms="36" status="PASS">
         </test-method>
-        <test-method signature="test()" started-at="2022-04-12T19:27:39Z" name="test" finished-at="2022-04-12T19:27:39Z" duration-ms="3" status="PASS">
+        <test-method signature="test()" started-at="2022-04-12T20:14:46Z" name="test" finished-at="2022-04-12T20:14:46Z" duration-ms="3" status="PASS">
         </test-method>
       </class>
     </test>
