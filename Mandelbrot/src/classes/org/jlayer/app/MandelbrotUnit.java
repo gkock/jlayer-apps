@@ -11,6 +11,22 @@ public class MandelbrotUnit {
 	private static int maxIterations;
 	private static int[] palette;
 	
+	@LayerField(isIndex = true)
+	int[] index;
+	
+	@LayerField
+	int rgbValue;
+	
+	static void setGlobalParams(int width, int height, int maxIterations) {
+		MandelbrotUnit.width = width;
+		MandelbrotUnit.height = height;
+		MandelbrotUnit.maxIterations = maxIterations;
+
+		palette = new int[256];
+		for (int i = 0; i < 256; i++)
+			palette[i] = Color.getHSBColor(i/255F, 1, 1).getRGB();
+	}
+	
 	private int countIterations(int row, int col) {
     	double xmin, xmax, ymin, ymax;
         xmin = -1.6744096740931858;
@@ -49,23 +65,6 @@ public class MandelbrotUnit {
 		int col = index[1];
 		int count = countIterations(row, col);
 		rgbValue = getRGB(count);
-	}
-	
-	@LayerField(isIndex = true)
-	int[] index;
-	
-	@LayerField
-	int rgbValue;
-	
-	static void setGlobalParams(int width, int height,
-			                           int maxIterations) {
-		MandelbrotUnit.width = width;
-		MandelbrotUnit.height = height;
-		MandelbrotUnit.maxIterations = maxIterations;
-		
-		palette = new int[256];
-        for (int i = 0; i < 256; i++)
-            palette[i] = Color.getHSBColor(i/255F, 1, 1).getRGB();
 	}
 	
 	@LayerMethod

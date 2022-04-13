@@ -10,14 +10,13 @@ import static org.jlayer.app.MyUtils.*;
 @LayerUnit 
 public class Output {
 	
-	@LayerField	Signal   y = new Signal();	// fanout signal
+	@LayerField Signal   y = new Signal();	// fanout signal
+	@LayerField Signal[] x;          		// input vector
+	@LayerField Signal[] outErr;     		// outgoing error signals
 	
-	@LayerField	Signal   b;          		// bias
-	@LayerField	Signal[] w;        			// weight vector
-	@LayerField	Signal[] x;          		// input vector
-	
-	@LayerField Signal   t;          		// target signal
-	@LayerField	Signal[] outErr;     		// outgoing error signals
+	Signal   b;          					// bias
+	Signal[] w;        						// weight vector
+	Signal   t;          					// target signal
 	
 	// call initSignals() after connect/associate
 	@LayerMethod
