@@ -102,8 +102,9 @@ public class DemoApp
 		StdDraw.setPenColor(StdDraw.BLUE);
 		StdDraw.textLeft(canvasMargin, canvasSize - canvasMargin, controlInfo);
 
-		StdDraw.setPenColor();
+		StdDraw.setPenColor(StdDraw.RED);
 		StdDraw.textLeft(canvasMargin, canvasSize/2 + 12*canvasMargin, basicInfo1);
+		StdDraw.setPenColor();
 		StdDraw.textLeft(canvasMargin, canvasSize/2 + 9*canvasMargin, basicInfo2);
 		
 		StdDraw.setPenColor(StdDraw.RED);
