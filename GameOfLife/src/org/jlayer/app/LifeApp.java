@@ -105,7 +105,7 @@ public class LifeApp
 		
 		StdDraw.clear();
 		StdDraw.textLeft(0, canvasSize + canvasMargin, controlInfo);
-		StdDraw.setPenColor();
+		StdDraw.setPenColor(StdDraw.RED);
 		for (int i = 0; i < layerWidth; i++) {
 			for (int j = 0; j < layerHeight; j++) {
 				if (myNet.getState(i, j) == 1) {

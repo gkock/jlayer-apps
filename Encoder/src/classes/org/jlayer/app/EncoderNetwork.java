@@ -3,8 +3,6 @@ package org.jlayer.app;
 import org.jlayer.model.*;
 import org.jlayer.util.*;
 
-import static org.jlayer.util.IndexTools.fullD1D1;
-
 import java.util.Random;
 
 public class EncoderNetwork {
@@ -28,6 +26,13 @@ public class EncoderNetwork {
 	Layer_Hidden_ hiddenLayer;
 	Layer_Input_  inputLayer;
 	
+	Relation full = new Relation() {
+		@Override
+		public boolean contains(int[] x, int[] y) {
+			return true;
+		}
+	};
+	
 	Double[][] patternPool;
 	
 	void createNetwork() {
@@ -50,9 +55,9 @@ public class EncoderNetwork {
 		hiddenLayer = new Layer_Hidden_(hiddenArray);
 		inputLayer = new Layer_Input_(inputArray);
 		
-		hiddenLayer.x.connect(inputLayer.y, fullD1D1);
-		outputLayer.x.connect(hiddenLayer.y, fullD1D1);
-		outputLayer.outErr.associate(hiddenLayer.inErr, fullD1D1);
+		hiddenLayer.x.connect(inputLayer.y, full);
+		outputLayer.x.connect(hiddenLayer.y, full);
+		outputLayer.outErr.associate(hiddenLayer.inErr, full);
 		
 		patternPool = new Double[patternSize][patternSize];
 		for (int i = 0; i < patternSize; i++) {
