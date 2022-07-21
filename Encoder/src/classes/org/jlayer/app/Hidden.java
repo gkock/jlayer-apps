@@ -11,13 +11,15 @@ import static org.jlayer.app.MyUtils.*;
 public class Hidden {
 	
 	@LayerField	Signal   y = new Signal();	// fanout signal
-	
-	@LayerField	Signal   b;          		// bias
-	@LayerField	Signal[] w;          		// weight vector
 	@LayerField	Signal[] x;          		// input vector
-	
 	@LayerField	Signal[] inErr;      		// incoming error signals
-	@LayerField	Signal[] outErr;     		// outgoing error signals
+	
+	// outgoing error signals     NOT FOR FIRST HIDDEN LAYER !!!
+//	@LayerField	Signal[] outErr;     		// outgoing error signals
+	
+	Signal   b;          		// bias
+	Signal[] w;          		// weight vector
+	
 	
 	// call initSignals() after connect/associate
 	@LayerMethod
