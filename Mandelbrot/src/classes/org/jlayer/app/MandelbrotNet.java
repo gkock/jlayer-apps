@@ -13,8 +13,6 @@ public class MandelbrotNet {
 	int height = 1200;
 	int maxIterations = 10000;
 	
-	boolean updateImageFlag = true;
-	
 	MandelbrotUnit[][] mandelbrotArray = null;
 	Layer_MandelbrotUnit_ mandelbrotLayer = null;
 	
@@ -41,10 +39,9 @@ public class MandelbrotNet {
 	}
 	
 	private void updateImage() {
-		Layer<MandelbrotUnit, Integer> rgbValues = mandelbrotLayer.rgbValue;
 		for(int row = 0; row < height; row++) {
 			for(int col = 0; col < width; col++) {
-				mandelbrotImage.setRGB(col, row, rgbValues.get(row, col));
+				mandelbrotImage.setRGB(col, row, mandelbrotLayer.rgbValue.get(row, col));
 			}
 		}   
 	}
