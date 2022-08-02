@@ -1,2 +1,2 @@
 # jlayer-apps
-JLayer Applications - Example Programs that illustrate the JLayer Features 
+JLayer Applications - Sample programs that demonstrate JLayer functionality 
