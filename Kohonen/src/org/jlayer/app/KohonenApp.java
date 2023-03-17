@@ -9,22 +9,18 @@ import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import java.util.Random;
+
+import static org.jlayer.app.MyUtils.*;
+
 /**
  * Game of Life / User Interface
  *
  */
-public class KohApp 
+public class KohonenApp 
 {
 	final static int canvasSize = getCanvasSize();
 	final static int canvasMargin = canvasSize/40;
-//	final static int cellSize = canvasSize/200;
-	
-//	final static int layerWidth = canvasSize / cellSize;
-//	final static int layerHeight = canvasSize / cellSize;
-	final static int layerWidth = 20;
-	final static int layerHeight = 20;
-	
-	final static int milliSec = 500;
 	
 	final static String controlInfo = "Control via key input: I (Init) | S (Step) | R (Run) | P (Pause) | E (Exit)";
 	final static String startInfo1 = "Network connections under construction";
@@ -33,11 +29,14 @@ public class KohApp
 	final static Font controlFont = new Font("Arial", Font.PLAIN, canvasMargin);
 	final static Font startFont = new Font("Arial", Font.BOLD, canvasMargin);
 	
+	final static int milliSec = 500;
+	static boolean running = false;
+	
 	enum Command { INIT, STEP, RUN, PAUSE, EXIT, NN }
 	
-	static KohNet myNet = new KohNet();
-	static int seed = 4711;
-	static boolean running = false;
+	static KohonenNet myNet = new KohonenNet();
+	final static int layerWidth = 25;
+	final static int layerHeight = 25;
 	
 	public static void main(String[] args) {
 		
@@ -48,54 +47,41 @@ public class KohApp
     	
     	drawStartWindow();
     	myNet.createNet(layerWidth, layerHeight);
-    	myNet.initNet(seed++);
+    	myNet.initNet();
     	drawWindow();
     	StdDraw.pause(milliSec);
     	
-    	// TEST OUTPUT
-    	System.out.printf("canvasSize = %d%n", canvasSize);
-    	System.out.printf("canvasMargin = %d%n", canvasMargin);
-//    	System.out.printf("cellSize = %d%n", cellSize);
-    	System.out.printf("layerWidth = %d%n", layerWidth);
-    	System.out.printf("layerHeight = %d%n", layerHeight);
-    	
-//    	while (true) {
-//    		Command nextCmd = getNextCommand();
-//    		switch(nextCmd) {
-//    		case INIT:
-//    			System.out.printf("INIT");
-//    			myNet.initNet(seed++);
-//    			running = false;
-//    			StdDraw.pause(milliSec);
-//    			break;
-//    		case STEP:
-//    			System.out.printf("STEP");
-//    			myNet.updateNet(1.0,1.0);
-//    			running = false;
-//    			StdDraw.pause(milliSec);
-//    			break;
-//    		case RUN:
-//    			System.out.printf("RUN");
-//    			myNet.updateNet(1.0,1.0);
-//    			running = true;
-//    			break;
-//    		case PAUSE:
-//    			System.out.printf("PAUSE");
-//    			running = false;
-//    			StdDraw.pause(milliSec);
-//    			break;
-//    		case NN:
-//    			System.out.printf("NN");
-//    			if (running) myNet.updateNet(1.0,1.0);
-//    			break;
-//    		case EXIT:
-//    			System.out.printf("EXIT");
-//    			System.exit(0);
-//    		default:
-//    			throw new RuntimeException();
-//    		}
-//    		drawWindow();
-//    	}
+    	while (true) {
+    		Command nextCmd = getNextCommand();
+    		switch(nextCmd) {
+    		case INIT:
+    			myNet.initNet();
+    			running = false;
+    			StdDraw.pause(milliSec);
+    			break;
+    		case STEP:
+    			myNet.updateNet();
+    			running = false;
+    			StdDraw.pause(milliSec);
+    			break;
+    		case RUN:
+    			myNet.updateNet();
+    			running = true;
+    			break;
+    		case PAUSE:
+    			running = false;
+    			StdDraw.pause(milliSec);
+    			break;
+    		case NN:
+    			if (running) myNet.updateNet();
+    			break;
+    		case EXIT:
+    			System.exit(0);
+    		default:
+    			throw new RuntimeException();
+    		}
+    		drawWindow();
+    	}
         
     }
 	
@@ -110,7 +96,6 @@ public class KohApp
 	}
 	
 	static void drawWindow() {
-		System.out.printf("drawWindow() %n");
 		StdDraw.setFont(controlFont);
 		StdDraw.setPenColor(StdDraw.BLUE);
 		
@@ -118,28 +103,31 @@ public class KohApp
 		StdDraw.textLeft(0, canvasSize + canvasMargin, controlInfo);
 		StdDraw.setPenColor(StdDraw.RED);
 		
-//		double[] weights = myNet.getWeights(9, 9);
-//		double x = weights[0] * canvasSize;
-//		double y = weights[1] * canvasSize;
-//		StdDraw.filledCircle(x, y, 5.0);
-//		
-//		
-//		weights = myNet.getWeights(10, 9);
-//		double x2 = weights[0] * canvasSize;
-//		double y2 = weights[1] * canvasSize;
-//		StdDraw.filledCircle(x2, y2, 5.0);
-//		
-//		StdDraw.line(x, y, x2, y2);
-		
 		double x1, y1, x2, y2;
 		double[] w_ij, w_Ij, w_iJ;
+		
+		// TEST ONLY nhoodDist()
+//		int[] ix1 = new int[2];
+//		int[] ix2 = new int[2];
+//		int iTEST = 5;
+//		int jTEST = 10;
+//		w_ij = myNet.getWeights(iTEST, jTEST);
+//		x1 = w_ij[0] * canvasSize;
+//		y1 = w_ij[1] * canvasSize;
+//		StdDraw.filledCircle(x1, y1, 5.0);
+//		ix1[0] = iTEST; ix1[1] = jTEST;
+		
 		
 		for (int i = 0; i < layerWidth; i++) {
 			for (int j = 0; j < layerHeight; j++) {
 				w_ij = myNet.getWeights(i, j);
 				x1 = w_ij[0] * canvasSize;
 				y1 = w_ij[1] * canvasSize;
-//				StdDraw.filledCircle(x, y, 5.0);
+				
+				// TEST ONLY nhoodDist()
+//				ix2[0] = i; ix2[1] = j;
+//				String distInfo = Integer.toString(nhoodDist(ix1, ix2));
+//				StdDraw.textLeft(x1, y1, distInfo);
 				
 				if (i+1 < layerWidth) {
 					w_Ij = myNet.getWeights(i+1, j);
@@ -154,10 +142,6 @@ public class KohApp
 					y2 = w_iJ[1] * canvasSize;
 					StdDraw.line(x1, y1, x2, y2);
 				}
-					
-				
-//				System.out.printf("weights[0] = %f%n", weights[0]);
-//				System.out.printf("weights[1] = %f%n", weights[1]);
 			}
 		}
 		StdDraw.show();

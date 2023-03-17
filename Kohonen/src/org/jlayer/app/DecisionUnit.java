@@ -1,7 +1,5 @@
 package org.jlayer.app;
 
-import java.util.Random;
-
 import org.jlayer.annotations.*;
 
 import static org.jlayer.app.MyUtils.*;
@@ -13,7 +11,7 @@ public class DecisionUnit {
 	Signals[] signals;
 	
 	@LayerMethod
-	void detWinner() {
+	void detWinnerIndex() {
 		double 	winDist = signals[0].distance;
 		int 	winIx 	= 0;
 		for (int i = 1; i < signals.length; i++) {

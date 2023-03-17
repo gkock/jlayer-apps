@@ -1,5 +1,6 @@
-# ignore generated java file, class files and html files
+# ignore generated java files, test files, class files and html files
 *Layer_*_.java
+*Test*.java
 *.class
 *.html
 

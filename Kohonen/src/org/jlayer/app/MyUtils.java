@@ -14,6 +14,12 @@ class MyUtils {
 		double result = Math.sqrt(delta1*delta1 + delta2*delta2);
 		return result;
 	}
+	static double euDist(int[] ix1, int[] ix2) {
+		double delta1 = ix1[0] - ix2[0];
+		double delta2 = ix1[1] - ix2[1];
+		double result = Math.sqrt(delta1*delta1 + delta2*delta2);
+		return result;
+	}
 	
 	// neighborhood distance
 	static int nhoodDist(int[] ix1, int[] ix2) {
@@ -23,9 +29,11 @@ class MyUtils {
 		return distance;
 	}
     
-	// neighborhood function
-	static double phi(int dist, double decay)
-	{
+	// adaptation function
+	static double phi(int dist, double decay) {
+	    return 1.0 / Math.exp(decay * dist);
+	}
+	static double phi(double dist, double decay) {
 	    return 1.0 / Math.exp(decay * dist);
 	}
 
