@@ -3,3 +3,7 @@
 
 # Generated files
 *_*_.java
+
+# ignore
+/bin/
+/doc/
