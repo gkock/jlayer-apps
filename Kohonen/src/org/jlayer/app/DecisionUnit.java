@@ -1,29 +1,33 @@
 package org.jlayer.app;
 
 import org.jlayer.annotations.*;
-
-import static org.jlayer.app.MyUtils.*;
+import org.jlayer.app.DecisionUnit.DecisionIO;
 
 @LayerUnit 
 public class DecisionUnit {
 	
+	static class DecisionIO {
+		double  distance;				// Euclidean distance
+		boolean isWinner; 				// smallest distance to input
+	}
+	
 	@LayerField 
-	Signals[] signals;
+	DecisionIO[] decisionIO;
 	
 	@LayerMethod
 	void detWinnerIndex() {
-		double 	winDist = signals[0].distance;
+		double 	winDist = decisionIO[0].distance;
 		int 	winIx 	= 0;
-		for (int i = 1; i < signals.length; i++) {
-			if (signals[i].distance < winDist) {
-				winDist = signals[i].distance;
+		for (int i = 1; i < decisionIO.length; i++) {
+			if (decisionIO[i].distance < winDist) {
+				winDist = decisionIO[i].distance;
 				winIx = i;
 			}
 		}
-		for (int i = 0; i < signals.length; i++) {
-			signals[i].isWinner = false;
+		for (int i = 0; i < decisionIO.length; i++) {
+			decisionIO[i].isWinner = false;
 		}
-		signals[winIx].isWinner = true;
+		decisionIO[winIx].isWinner = true;
 	}
 
 }

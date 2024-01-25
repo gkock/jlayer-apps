@@ -16,9 +16,8 @@ public class KohonenNet {
 	Random 	rgen;
 	int 	seed = 4711;
 	double 	lwb = 0.4, upb = 0.5;
-	int 	counter;
 	
-	private DecisionUnit[] 		decisionArray;
+	private DecisionUnit[] 		decisionUnit;
 	private Layer_DecisionUnit_ decisionMaker;
 	
 	private KohonenUnit[][] 	kohArray;
@@ -26,9 +25,9 @@ public class KohonenNet {
 	
 	public void createNet(int width, int heigth) {
 		// create decisionMaker
-		decisionArray 		= new DecisionUnit[1];
-		decisionArray[0]	= new DecisionUnit();
-		decisionMaker 		= new Layer_DecisionUnit_(decisionArray);
+		decisionUnit 	= new DecisionUnit[1];
+		decisionUnit[0]	= new DecisionUnit();
+		decisionMaker 	= new Layer_DecisionUnit_(decisionUnit);
 		
 		// create Kohonen layer
 		kohArray = new KohonenUnit[width][heigth];
@@ -40,29 +39,27 @@ public class KohonenNet {
 		kohLayer = new Layer_KohonenUnit_(kohArray);
 		
 		// establish connections
-		decisionMaker.signals.connect(kohLayer.signals, full);
+		decisionMaker.decisionIO.connect(kohLayer.decisionIO, full);
 	}
 	
 	public void initNet() {
-		counter = 0;
 		rgen = new Random(seed++);
 		kohLayer.initWeights(rgen, lwb, upb);
 	}
 	
-	public void updateNet() {
+	public void trainNet() {
 		double x1 = rgen.nextDouble(0.0, 1.0);
 		double x2 = rgen.nextDouble(0.0, 1.0);
-		kohLayer.setDistance(x1, x2);
+		kohLayer.nextInputSample(x1, x2);
 		decisionMaker.detWinnerIndex();
 		kohLayer.setWinnerIndex();
 		kohLayer.adaptWeights(x1, x2);
-//		System.out.printf("counter = %d%n", counter++);
 	}
 	
 	public double[] getWeights(int i, int j) {
 		double[] weights = new double[2];
-		weights[0] = kohArray[i][j].w1;
-		weights[1] = kohArray[i][j].w2;
+		weights[0] = kohArray[i][j].w[0];
+		weights[1] = kohArray[i][j].w[1];
 		return weights;
 	}
 
