@@ -8,4 +8,4 @@ Moreover, it shows how a mathematical relation over indices is used to **connect
 - Unit Class `LifeCell` is used for coding the game from a cell's point of view.
 - Class `LifeUniverse` establishes the global structure and adds the global dynamics.
 
-Further details  can be found on the website [www.jlayer.org](http://www.jlayer.org/).
+Further details  can be found on the [JLayer Website](http://www.jlayer.org/example_GameOfLife_Notes.html).

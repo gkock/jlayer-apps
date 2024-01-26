@@ -10,4 +10,4 @@ with the parallel implementation using all available processor cores.
   specifically the two methods offered for running in a loop and for running in parallel, respectively.
 - Class `MandelbrotNet` establishes the global structure and adds the global dynamics.
 
-Further details  can be found on the website [www.jlayer.org](http://www.jlayer.org/).
+Further details  can be found on the [JLayer Website](http://www.jlayer.org/example_Mandelbrot_Notes.html).
