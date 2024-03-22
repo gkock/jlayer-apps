@@ -37,4 +37,5 @@ hs_err_pid*
 
 # do not ignore these files
 !jlayer-1.0.jar
+!jlayer-1.0.0.jar
 !testng.jar

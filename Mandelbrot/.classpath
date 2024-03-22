@@ -9,6 +9,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/tests/testng.jar"/>
-	<classpathentry kind="lib" path="lib/classes/jlayer-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/classes/jlayer-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
